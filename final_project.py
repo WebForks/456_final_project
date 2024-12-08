@@ -7,7 +7,6 @@ import numpy as np
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import matplotlib.pyplot as plt
 
-# Step 2: Data Preprocessing (Related to Homework 2: Data augmentation and preprocessing techniques)
 train_dir = os.path.join("data", "natural_images")
 
 # Image augmentation and preprocessing
@@ -39,7 +38,6 @@ val_generator = data_gen.flow_from_directory(
     subset='validation'
 )
 
-# Step 3: Define Neural Network Model (Related to Homework 3: Building and customizing neural network models)
 model = Sequential([
     Conv2D(32, (3, 3), activation='relu', input_shape=(150, 150, 3)),
     MaxPooling2D((2, 2)),
@@ -62,7 +60,6 @@ model.compile(
     metrics=['accuracy']
 )
 
-# Step 4: Train the Model (Related to Homework 3: Training models and tracking performance metrics)
 history = model.fit(
     train_generator,
     steps_per_epoch=train_generator.samples // train_generator.batch_size,
@@ -72,16 +69,12 @@ history = model.fit(
     epochs=20
 )
 
-# Step 5: Evaluate the Model (Related to Homework 3: Evaluating trained models)
 eval_loss, eval_accuracy = model.evaluate(val_generator)
 print(f"Validation Loss: {eval_loss}")
 print(f"Validation Accuracy: {eval_accuracy}")
 
-# Step 6: Save the Model (Related to Homework 1: Saving and loading models)
 model.save("natural_images_classifier.h5")
 print("Model saved as natural_images_classifier.h5")
-
-# Step 7: Demonstrate Model Usage (Related to Homework 2: Working with predictions and real-world inference)
 
 
 def predict_image(image_path):
